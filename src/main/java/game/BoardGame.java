@@ -1,5 +1,11 @@
 package game;
 
+/**
+ * This class contains the initial matrix of board game.
+ * @determineWinner() function is the main logic of the game.
+ * It checks horizontally,vertically,anti/diagonally that player has not adjacent stones.
+ * @getTurns() function calculates the total numbers of turns which players has made.
+ */
 public class BoardGame {
     public int[][] cellsState;
 

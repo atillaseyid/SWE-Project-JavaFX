@@ -9,12 +9,13 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.GameScoresController">
    <children>
-      <TableView fx:id="toptenTable" editable="true" layoutX="25.0" layoutY="74.0" prefHeight="550.0" prefWidth="650.0">
+      <TableView fx:id="toptenTable" editable="true" layoutX="50.0" layoutY="119.0" prefHeight="550.0" prefWidth="650.0">
         <columns>
-          <TableColumn fx:id="player" prefWidth="180.0" text="Date And Time" />
-          <TableColumn fx:id="steps" prefWidth="253.0" text="Players" />
-            <TableColumn fx:id="duration" prefWidth="54.0" text="Turns" />
-            <TableColumn fx:id="created" prefWidth="158.0" text="Winner" />
+          <TableColumn fx:id="dateandtime" prefWidth="176.0" text="Date And Time" />
+          <TableColumn fx:id="player1" prefWidth="257.0" text="Player1" />
+            <TableColumn fx:id="player2" prefWidth="75.0" text="Player2" />
+            <TableColumn fx:id="turns" prefWidth="54.0" text="Turns" />
+            <TableColumn fx:id="winner" prefWidth="158.0" text="Winner" />
         </columns>
       </TableView>
       <Label layoutX="272.0" layoutY="32.0" text="Game Scores">

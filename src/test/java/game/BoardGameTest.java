@@ -19,6 +19,7 @@ class BoardGameTest {
 
     }
 
+
     @Test
     void click() {
         BoardGame b = new BoardGame();
@@ -42,6 +43,7 @@ class BoardGameTest {
         });
     }
 
+
     @Test
     void determineWinner() {
         BoardGame b1 = new BoardGame(new int[][]{
@@ -53,6 +55,7 @@ class BoardGameTest {
         });
         assertEquals(2, b1.determineWinner());
     }
+
 
     @Test
     void getTurns() {

@@ -1,5 +1,7 @@
 package gui.controller;
 
+import Helpers.DataManager;
+import Models.GameState;
 import game.BoardGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,18 +20,20 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+/**
+ * Class which collects user and game data.Handles the mouse-clicking and displaying board functions
+ */
 
 public class BoardGameController {
     private FXMLLoader fxmlLoader = new FXMLLoader();
 
-    String timeInText;
+
 
     public LocalDateTime time;
 
-    public String player1;
-    public String player2;
 
-    public String winner;
+
+    public GameState gamestate = new GameState();
 
     @FXML
     private GridPane board;
@@ -38,12 +42,15 @@ public class BoardGameController {
 
     @FXML
     private void initialize() {
-        player1 = LaunchController.playerName1;
-        player2 = LaunchController.playerName2;
+        gamestate.setPlayer1(LaunchController.playerName1);
+       // player1 = LaunchController.playerName1;
+        gamestate.setPlayer2(LaunchController.playerName2);
+        //player2 = LaunchController.playerName2;
         time = LocalDateTime.now();
-        timeInText = time.toString();
-        System.out.println(timeInText);//time to db
-        System.out.println(player1 + " vs " + player2);//players to db
+        //timeInText = time.toString();
+        gamestate.setTimeInText(time.toString());
+        System.out.println(gamestate.getTimeInText());//time to db
+        System.out.println(gamestate.getPlayer1() + " vs " + gamestate.getPlayer2());//players to db
         bg = new BoardGame();
         displayBoard();
     }
@@ -58,7 +65,8 @@ public class BoardGameController {
         displayBoard();
 
         if (bg.determineWinner() == 1) {
-            winner = player2;
+            //winner = player2;
+            gamestate.setWinner(gamestate.getPlayer2());
 
             fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/scores.fxml"));
             try {
@@ -75,7 +83,8 @@ public class BoardGameController {
             board.setDisable(true);
         }
         if (bg.determineWinner() == 2) {
-            winner = player1;
+            //winner = player1;
+            gamestate.setWinner(gamestate.getPlayer1());
             fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/scores.fxml"));
             try {
                 Parent root = fxmlLoader.load();
@@ -88,9 +97,14 @@ public class BoardGameController {
                 e.printStackTrace();
             }
             board.setDisable(true);
+
         }
         System.out.println(bg.getTurns());// turns to db
-        System.out.println(winner); // winner to db
+        System.out.println(gamestate.getWinner()); // winner to db
+        if(gamestate.getWinner() != null){
+            gamestate.setTurn(bg.getTurns());
+            DataManager.save(gamestate);
+        }
     }
 
     private void displayBoard(){

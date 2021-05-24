@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Class which asks user names at starting page and handles to move the game page
+ */
 public class LaunchController {
     private FXMLLoader fxmlLoader = new FXMLLoader();
 
