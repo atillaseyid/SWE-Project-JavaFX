@@ -3,6 +3,8 @@ package game;
 public class BoardGame {
     public int[][] cellsState;
 
+    public int turn;
+
     public final int[][] INITIAL = {
             {0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0},
@@ -65,11 +67,14 @@ public class BoardGame {
     }
 
     public int getTurns(){
-        return count;
-    }
-
-    public boolean isFirst(){
-        return getTurns() % 2 == 0;
+        turn = 0;
+        for(int i = 0; i < cellsState.length; i++){
+            for(int j = 0; j < cellsState[0].length; j++){
+                if(cellsState[i][j] != 0)
+                    turn++;
+            }
+        }
+        return turn;
     }
 
     public void printGameBoard() {
