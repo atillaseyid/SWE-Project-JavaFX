@@ -13,12 +13,12 @@ public class BoardGame {
 
     public final int[][] testInitial = {
             {1, 1, 1, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0}
+            {0, 0, 0, 1, 0},
+            {0, 2, 0, 1, 0},
+            {0, 0, 2, 0, 0},
+            {0, 0, 0, 2, 0}
     };
-    public static int count = 0;
+    public int count = 0;
 
     public BoardGame(){
         cellsState = INITIAL;
@@ -34,36 +34,45 @@ public class BoardGame {
     }
 
     public void click(int i, int j){
-        if(canClick(i, j) && count % 2 == 0){
+        if(canClick(i, j) && (count % 2 == 0)){
             cellsState[i][j] = 1;
             count++;
         }
-        if(canClick(i, j) && count % 2 == 1){
+        if(canClick(i, j) && (count % 2 == 1)){
             cellsState[i][j] = 2;
             count++;
         }
     }
 
     public int determineWinner() {
-        for (int i = 0; i < cellsState.length - 2; i++) {
-            for (int j = 0; j < cellsState[0].length - 2; j++) {
-                if ((cellsState[i][j] == 1 && cellsState[i][j + 1] == 1 && cellsState[i][j + 2] == 1)
-                        || (cellsState[i][j] == 1 && cellsState[i + 1][j] == 1 && cellsState[i + 2][j] == 1)
-                        || (cellsState[i][j] == 1 && cellsState[i + 1][j + 1] == 1 && cellsState[i + 2][j + 2] == 1)) {
-                    return 2;
-                }
-                if ((cellsState[i][j] == 2 && cellsState[i][j + 1] == 2 && cellsState[i][j + 2] == 2)
-                        || (cellsState[i][j] == 2 && cellsState[i + 1][j] == 2 && cellsState[i + 2][j] == 2)
-                        || (cellsState[i][j] == 2 && cellsState[i + 1][j + 1] == 2 && cellsState[i + 2][j + 2] == 2)) {
+        for(int i = 0; i < cellsState.length; i++){
+            for(int j = 0; j < cellsState[0].length; j++) {
+                if ((j<=2 && cellsState[i][j] == 1 && cellsState[i][j + 1] == 1 && cellsState[i][j + 2] == 1) ||
+                        (i<=2 && cellsState[i][j] == 1 && cellsState[i + 1][j] == 1 && cellsState[i + 2][j] == 1) ||
+                        (i<=2 && j<=2 && cellsState[i][j] == 1 && cellsState[i + 1][j + 1] == 1 && cellsState[i + 2][j + 2] == 1) ||
+                        ((i>=2 && j<=2 && cellsState[i][j] == 1 && cellsState[i - 1][j + 1] == 1 && cellsState[i - 2][j + 2] == 1))) {
                     return 1;
+                }
+                if ((j<=2 && cellsState[i][j] == 2 && cellsState[i][j + 1] == 2 && cellsState[i][j + 2] == 2) ||
+                        (i<=2 && cellsState[i][j] == 2 && cellsState[i + 1][j] == 2 && cellsState[i + 2][j] == 2) ||
+                        (i<=2 && j<=2 && cellsState[i][j] == 2 && cellsState[i + 1][j + 1] == 2 && cellsState[i + 2][j + 2] == 2) ||
+                        ((i>=2 && j<=2 && cellsState[i][j] == 2 && cellsState[i - 1][j + 1] == 2 && cellsState[i - 2][j + 2] == 2))) {
+                    return 2;
                 }
             }
         }
         return 0;
     }
 
+    public int getTurns(){
+        return count;
+    }
 
-    public void print() {
+    public boolean isFirst(){
+        return getTurns() % 2 == 0;
+    }
+
+    public void printGameBoard() {
         for (int i = 0; i < cellsState.length; i++) {
             for (int j = 0; j < cellsState[0].length; j++) {
                 System.out.print(cellsState[i][j]);
