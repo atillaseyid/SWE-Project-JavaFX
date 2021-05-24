@@ -3,52 +3,34 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>inf.unideb.hu</groupId>
-    <artifactId>Project-javafx</artifactId>
+    <artifactId>JavaFXProject</artifactId>
     <version>1.0</version>
-    <description>5x5 Board Game</description>
+    <packaging>jar</packaging>
+    <description>5x5 Board Game using JavaFx</description>
 
     <developers>
         <developer>
-            <id>atillaseyid</id>
             <name>Atilla Seyid</name>
             <email>atillaseyid87@gmail.com</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
-            <organizationUrl>http://www.inf.unideb.hu/</organizationUrl>
+            <organizationUrl>https://github.com/atillaseyid</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <developerConnection>scm:git:https://github.com/atillaseyid</developerConnection>
+        <developerConnection>scm:git:https://github.com/atillaseyid/SWE-Project-JavaFX</developerConnection>
     </scm>
-
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
-        <maven.compiler.release>16</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-        <exec.mainClass>gui.Main</exec.mainClass>
-        <jacoco.version>0.8.7</jacoco.version>
-        <junit.jupiter.version>5.7.1</junit.jupiter.version>
+        <maven.compiler.release>16</maven.compiler.release>
+        <exec.mainClass>Main</exec.mainClass>
         <javafx.version>16</javafx.version>
+        <junit.jupiter.version>5.7.1</junit.jupiter.version>
+        <jacoco.version>0.8.7</jacoco.version>
+        <surefire.version>3.0.0-M5</surefire.version>
     </properties>
-
-
     <dependencies>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11.0.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>11.0.2</version>
-            <scope>compile</scope>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -56,22 +38,22 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.tinylog</groupId>
-            <artifactId>tinylog-api</artifactId>
-            <version>2.3.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.tinylog</groupId>
-            <artifactId>tinylog-impl</artifactId>
-            <version>2.3.1</version>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -85,6 +67,18 @@
             <version>2.12.3</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-api</artifactId>
+            <version>2.3.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-impl</artifactId>
+            <version>2.3.1</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -92,10 +86,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-                <configuration>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.projectlombok</groupId>
